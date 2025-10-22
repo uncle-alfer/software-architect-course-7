@@ -1,17 +1,5 @@
 [
   {
-    "seed": "https://ru.wikipedia.org/wiki/Северус_Снегг",
-    "canonical": "Северус Снегг",
-    "pageid": 172300,
-    "status": "ok",
-    "path": "data/raw/Северус_Снегг.txt",
-    "stats": {
-      "paras": 58,
-      "list_items": 3,
-      "chars": 23859
-    }
-  },
-  {
     "seed": "https://ru.wikipedia.org/wiki/Рон_Уизли",
     "canonical": "Рон Уизли",
     "pageid": 265923,
@@ -72,18 +60,6 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Ремус_Люпин",
-    "canonical": "Список персонажей серии романов о Гарри Поттере",
-    "pageid": 3565199,
-    "status": "ok",
-    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2652
-    }
-  },
-  {
     "seed": "https://ru.wikipedia.org/wiki/Сириус_Блэк",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
@@ -96,15 +72,15 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Драко_Малфой",
-    "canonical": "Драко Малфой",
-    "pageid": 306785,
+    "seed": "https://ru.wikipedia.org/wiki/Ремус_Люпин",
+    "canonical": "Список персонажей серии романов о Гарри Поттере",
+    "pageid": 3565199,
     "status": "ok",
-    "path": "data/raw/Драко_Малфой.txt",
+    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
     "stats": {
-      "paras": 20,
-      "list_items": 9,
-      "chars": 11986
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2652
     }
   },
   {
@@ -120,7 +96,31 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Невилл_Лонгботтом",
+    "seed": "https://ru.wikipedia.org/wiki/Драко_Малфой",
+    "canonical": "Драко Малфой",
+    "pageid": 306785,
+    "status": "ok",
+    "path": "data/raw/Драко_Малфой.txt",
+    "stats": {
+      "paras": 20,
+      "list_items": 9,
+      "chars": 11986
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Северус_Снегг",
+    "canonical": "Северус Снегг",
+    "pageid": 172300,
+    "status": "ok",
+    "path": "data/raw/Северус_Снегг.txt",
+    "stats": {
+      "paras": 58,
+      "list_items": 3,
+      "chars": 23859
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Минерва_Макгонагалл",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
     "status": "ok",
@@ -132,7 +132,19 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Минерва_Макгонагалл",
+    "seed": "https://ru.wikipedia.org/wiki/Джинни_Уизли",
+    "canonical": "Список персонажей серии романов о Гарри Поттере",
+    "pageid": 3565199,
+    "status": "ok",
+    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
+    "stats": {
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2652
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Невилл_Лонгботтом",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
     "status": "ok",
@@ -157,18 +169,6 @@
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Беллатриса_Лестрейндж",
-    "canonical": "Список персонажей серии романов о Гарри Поттере",
-    "pageid": 3565199,
-    "status": "ok",
-    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2652
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Джинни_Уизли",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
     "status": "ok",
@@ -216,43 +216,7 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Аластор_Грюм",
-    "canonical": "Список персонажей серии романов о Гарри Поттере",
-    "pageid": 3565199,
-    "status": "ok",
-    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2652
-    }
-  },
-  {
     "seed": "https://ru.wikipedia.org/wiki/Долорес_Амбридж",
-    "canonical": "Список персонажей серии романов о Гарри Поттере",
-    "pageid": 3565199,
-    "status": "ok",
-    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2652
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Нимфадора_Тонкс",
-    "canonical": "Список персонажей серии романов о Гарри Поттере",
-    "pageid": 3565199,
-    "status": "ok",
-    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2652
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Корнелиус_Фадж",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
     "status": "ok",
@@ -276,7 +240,7 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Виктор_Крам",
+    "seed": "https://ru.wikipedia.org/wiki/Нимфадора_Тонкс",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
     "status": "ok",
@@ -288,7 +252,7 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Златопуст_Локонс",
+    "seed": "https://ru.wikipedia.org/wiki/Аластор_Грюм",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
     "status": "ok",
@@ -300,31 +264,7 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Кингсли_Бруствер",
-    "canonical": "Список персонажей серии романов о Гарри Поттере",
-    "pageid": 3565199,
-    "status": "ok",
-    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2652
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Флёр_Делакур",
-    "canonical": "Список персонажей серии романов о Гарри Поттере",
-    "pageid": 3565199,
-    "status": "ok",
-    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2652
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Ксенофилиус_Лавгуд",
+    "seed": "https://ru.wikipedia.org/wiki/Корнелиус_Фадж",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
     "status": "ok",
@@ -348,7 +288,31 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Гораций_Слизнорт",
+    "seed": "https://ru.wikipedia.org/wiki/Ксенофилиус_Лавгуд",
+    "canonical": "Список персонажей серии романов о Гарри Поттере",
+    "pageid": 3565199,
+    "status": "ok",
+    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
+    "stats": {
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2652
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Филиус_Флитвик",
+    "canonical": "Список персонажей серии романов о Гарри Поттере",
+    "pageid": 3565199,
+    "status": "ok",
+    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
+    "stats": {
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2652
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Златопуст_Локонс",
     "canonical": "Список персонажей серии романов о Гарри Поттере",
     "pageid": 3565199,
     "status": "ok",
@@ -372,11 +336,63 @@
     }
   },
   {
+    "seed": "https://ru.wikipedia.org/wiki/Гораций_Слизнорт",
+    "canonical": "Список персонажей серии романов о Гарри Поттере",
+    "pageid": 3565199,
+    "status": "ok",
+    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
+    "stats": {
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2652
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Флёр_Делакур",
+    "canonical": "Список персонажей серии романов о Гарри Поттере",
+    "pageid": 3565199,
+    "status": "ok",
+    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
+    "stats": {
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2652
+    }
+  },
+  {
     "seed": "https://ru.wikipedia.org/wiki/Сибилла_Трелони",
     "status": "resolve_failed"
   },
   {
+    "seed": "https://ru.wikipedia.org/wiki/Виктор_Крам",
+    "canonical": "Список персонажей серии романов о Гарри Поттере",
+    "pageid": 3565199,
+    "status": "ok",
+    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
+    "stats": {
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2652
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Кингсли_Бруствер",
+    "canonical": "Список персонажей серии романов о Гарри Поттере",
+    "pageid": 3565199,
+    "status": "ok",
+    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
+    "stats": {
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2652
+    }
+  },
+  {
     "seed": "https://ru.wikipedia.org/wiki/Помона_Спраут",
+    "status": "resolve_failed"
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Больница_Святого_Мунго",
     "status": "resolve_failed"
   },
   {
@@ -392,20 +408,6 @@
     },
     "sectioned": true,
     "section_index": 55
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Визжащая_хижина",
-    "canonical": "Локации мира Гарри Поттера",
-    "pageid": 1805850,
-    "status": "ok",
-    "path": "data/raw/Визжащая_хижина.txt",
-    "stats": {
-      "paras": 7,
-      "list_items": 0,
-      "chars": 1889
-    },
-    "sectioned": true,
-    "section_index": 51
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Площадь_Гриммо,_12",
@@ -436,8 +438,24 @@
     "section_index": 9
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Больница_Святого_Мунго",
-    "status": "resolve_failed"
+    "seed": "https://ru.wikipedia.org/wiki/Визжащая_хижина",
+    "canonical": "Локации мира Гарри Поттера",
+    "pageid": 1805850,
+    "status": "ok",
+    "path": "data/raw/Визжащая_хижина.txt",
+    "stats": {
+      "paras": 7,
+      "list_items": 0,
+      "chars": 1889
+    },
+    "sectioned": true,
+    "section_index": 51
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Нурменгард",
+    "canonical": "Локации мира Гарри Поттера",
+    "pageid": 1805850,
+    "status": "too_short"
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Хогсмид",
@@ -452,18 +470,6 @@
     },
     "sectioned": true,
     "section_index": 43
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Филиус_Флитвик",
-    "canonical": "Список персонажей серии романов о Гарри Поттере",
-    "pageid": 3565199,
-    "status": "ok",
-    "path": "data/raw/Список_персонажей_серии_романов_о_Гарри_Поттере.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2652
-    }
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Хогвартс",
@@ -490,24 +496,6 @@
     }
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Пожиратели_смерти",
-    "canonical": "Пожиратели смерти",
-    "pageid": 302136,
-    "status": "ok",
-    "path": "data/raw/Пожиратели_смерти.txt",
-    "stats": {
-      "paras": 12,
-      "list_items": 0,
-      "chars": 5381
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Нурменгард",
-    "canonical": "Локации мира Гарри Поттера",
-    "pageid": 1805850,
-    "status": "too_short"
-  },
-  {
     "seed": "https://ru.wikipedia.org/wiki/Гринготтс",
     "canonical": "Локации мира Гарри Поттера",
     "pageid": 1805850,
@@ -520,12 +508,6 @@
     },
     "sectioned": true,
     "section_index": 28
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Лютный_переулок",
-    "canonical": "Локации мира Гарри Поттера",
-    "pageid": 1805850,
-    "status": "too_short"
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Выручай-комната",
@@ -548,15 +530,21 @@
     "status": "category_miss"
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Министерство_магии",
-    "canonical": "Министерство магии",
-    "pageid": 301164,
+    "seed": "https://ru.wikipedia.org/wiki/Лютный_переулок",
+    "canonical": "Локации мира Гарри Поттера",
+    "pageid": 1805850,
+    "status": "too_short"
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Пожиратели_смерти",
+    "canonical": "Пожиратели смерти",
+    "pageid": 302136,
     "status": "ok",
-    "path": "data/raw/Министерство_магии.txt",
+    "path": "data/raw/Пожиратели_смерти.txt",
     "stats": {
-      "paras": 60,
-      "list_items": 54,
-      "chars": 33008
+      "paras": 12,
+      "list_items": 0,
+      "chars": 5381
     }
   },
   {
@@ -569,6 +557,18 @@
       "paras": 11,
       "list_items": 29,
       "chars": 3728
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Министерство_магии",
+    "canonical": "Министерство магии",
+    "pageid": 301164,
+    "status": "ok",
+    "path": "data/raw/Министерство_магии.txt",
+    "stats": {
+      "paras": 60,
+      "list_items": 54,
+      "chars": 33008
     }
   },
   {
@@ -594,6 +594,20 @@
     "section_index": 10
   },
   {
+    "seed": "https://ru.wikipedia.org/wiki/Слизерин",
+    "canonical": "Хогвартс",
+    "pageid": 122991,
+    "status": "ok",
+    "path": "data/raw/Слизерин.txt",
+    "stats": {
+      "paras": 6,
+      "list_items": 2,
+      "chars": 4174
+    },
+    "sectioned": true,
+    "section_index": 17
+  },
+  {
     "seed": "https://ru.wikipedia.org/wiki/Пуффендуй",
     "canonical": "Хогвартс",
     "pageid": 122991,
@@ -606,6 +620,54 @@
     },
     "sectioned": true,
     "section_index": 13
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Меч_Годрика_Гриффиндора",
+    "canonical": "Меч Годрика Гриффиндора",
+    "pageid": 744014,
+    "status": "ok",
+    "path": "data/raw/Меч_Годрика_Гриффиндора.txt",
+    "stats": {
+      "paras": 10,
+      "list_items": 0,
+      "chars": 2751
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Мантия-невидимка_(Гарри_Поттер)",
+    "canonical": "Мантия-невидимка (Гарри Поттер)",
+    "pageid": 311842,
+    "status": "ok",
+    "path": "data/raw/Мантия-невидимка_Гарри_Поттер.txt",
+    "stats": {
+      "paras": 16,
+      "list_items": 0,
+      "chars": 2881
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Маховик_времени",
+    "canonical": "Маховик времени",
+    "pageid": 319339,
+    "status": "ok",
+    "path": "data/raw/Маховик_времени.txt",
+    "stats": {
+      "paras": 4,
+      "list_items": 4,
+      "chars": 1077
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Распределяющая_шляпа",
+    "canonical": "Распределяющая шляпа",
+    "pageid": 301685,
+    "status": "ok",
+    "path": "data/raw/Распределяющая_шляпа.txt",
+    "stats": {
+      "paras": 9,
+      "list_items": 0,
+      "chars": 1788
+    }
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Когтевран",
@@ -622,85 +684,11 @@
     "section_index": 14
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Слизерин",
-    "canonical": "Хогвартс",
-    "pageid": 122991,
-    "status": "ok",
-    "path": "data/raw/Слизерин.txt",
-    "stats": {
-      "paras": 6,
-      "list_items": 2,
-      "chars": 4174
-    },
-    "sectioned": true,
-    "section_index": 17
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Меч_Годрика_Гриффиндора",
-    "canonical": "Меч Годрика Гриффиндора",
-    "pageid": 744014,
-    "status": "ok",
-    "path": "data/raw/Меч_Годрика_Гриффиндора.txt",
-    "stats": {
-      "paras": 10,
-      "list_items": 0,
-      "chars": 2751
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Маховик_времени",
-    "canonical": "Маховик времени",
-    "pageid": 319339,
-    "status": "ok",
-    "path": "data/raw/Маховик_времени.txt",
-    "stats": {
-      "paras": 4,
-      "list_items": 4,
-      "chars": 1077
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Мантия-невидимка_(Гарри_Поттер)",
-    "canonical": "Мантия-невидимка (Гарри Поттер)",
-    "pageid": 311842,
-    "status": "ok",
-    "path": "data/raw/Мантия-невидимка_Гарри_Поттер.txt",
-    "stats": {
-      "paras": 16,
-      "list_items": 0,
-      "chars": 2881
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Кубок_Хельги_Хаффлпафф",
-    "status": "resolve_failed"
-  },
-  {
     "seed": "https://ru.wikipedia.org/wiki/Диадема_Когтеврана",
     "status": "resolve_failed"
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Распределяющая_шляпа",
-    "canonical": "Распределяющая шляпа",
-    "pageid": 301685,
-    "status": "ok",
-    "path": "data/raw/Распределяющая_шляпа.txt",
-    "stats": {
-      "paras": 9,
-      "list_items": 0,
-      "chars": 1788
-    }
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Золотой_снитч",
-    "status": "resolve_failed"
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Дневник_Тома_Риддла",
-    "status": "resolve_failed"
-  },
-  {
-    "seed": "https://ru.wikipedia.org/wiki/Кольцо_Марволо_Гонта",
+    "seed": "https://ru.wikipedia.org/wiki/Кубок_Хельги_Хаффлпафф",
     "status": "resolve_failed"
   },
   {
@@ -714,6 +702,18 @@
       "list_items": 0,
       "chars": 2289
     }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Кольцо_Марволо_Гонта",
+    "status": "resolve_failed"
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Дневник_Тома_Риддла",
+    "status": "resolve_failed"
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Золотой_снитч",
+    "status": "resolve_failed"
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Крестраж",
@@ -730,10 +730,16 @@
     "section_index": 2
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Букля",
-    "canonical": "Букли (значения)",
-    "pageid": 3211581,
-    "status": "too_short"
+    "seed": "https://ru.wikipedia.org/wiki/Бузинная_палочка",
+    "canonical": "Волшебные предметы мира Гарри Поттера",
+    "pageid": 1807125,
+    "status": "ok",
+    "path": "data/raw/Волшебные_предметы_мира_Гарри_Поттера.txt",
+    "stats": {
+      "paras": 18,
+      "list_items": 22,
+      "chars": 9431
+    }
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Дементор",
@@ -750,16 +756,10 @@
     "section_index": 90
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Бузинная_палочка",
-    "canonical": "Волшебные предметы мира Гарри Поттера",
-    "pageid": 1807125,
-    "status": "ok",
-    "path": "data/raw/Волшебные_предметы_мира_Гарри_Поттера.txt",
-    "stats": {
-      "paras": 18,
-      "list_items": 22,
-      "chars": 9431
-    }
+    "seed": "https://ru.wikipedia.org/wiki/Букля",
+    "canonical": "Букли (значения)",
+    "pageid": 3211581,
+    "status": "too_short"
   },
   {
     "seed": "https://ru.wikipedia.org/wiki/Патронус",
@@ -776,18 +776,6 @@
     "section_index": 111
   },
   {
-    "seed": "https://ru.wikipedia.org/wiki/Арагог",
-    "canonical": "Рубеус Хагрид",
-    "pageid": 320943,
-    "status": "ok",
-    "path": "data/raw/Рубеус_Хагрид.txt",
-    "stats": {
-      "paras": 30,
-      "list_items": 4,
-      "chars": 15113
-    }
-  },
-  {
     "seed": "https://ru.wikipedia.org/wiki/Медальон_Слизерина",
     "canonical": "Волшебные предметы мира Гарри Поттера",
     "pageid": 1807125,
@@ -797,6 +785,18 @@
       "paras": 18,
       "list_items": 22,
       "chars": 9431
+    }
+  },
+  {
+    "seed": "https://ru.wikipedia.org/wiki/Арагог",
+    "canonical": "Рубеус Хагрид",
+    "pageid": 320943,
+    "status": "ok",
+    "path": "data/raw/Рубеус_Хагрид.txt",
+    "stats": {
+      "paras": 30,
+      "list_items": 4,
+      "chars": 15113
     }
   },
   {

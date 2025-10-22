@@ -4,6 +4,7 @@ import re
 import json
 from typing import Tuple
 
+# --- Tail / structure cleanup ---
 DROP_SECTION_RE = re.compile(
     r"(?im)^(?:##|###|####)\s*(?:См\.?\s*также|Примечания|Литература|Ссылки|Внешние\s+ссылки|Источники)\b.*\Z",
     re.DOTALL,
@@ -14,13 +15,25 @@ BLANKS_RE = re.compile(r"\n{3,}")
 PUNCT_SPACE = re.compile(r"\s+([,.;:!?])")
 EDITBOX_RE = re.compile(r"\[\s*править\s*\|\s*править\s*код\s*\]", re.IGNORECASE)
 
+# --- Cosmetic-only cleanup ---
+# Lines like "↑ ..." (optionally with a bullet before)
 UP_ARROW_LINE_RE = re.compile(r"(?m)^\s*(?:[-–—]\s*)?↑.*(?:\n|$)")
+# Service brackets like [источник не указан ...], [Архив ...], [http...]
 BRACKET_SERVICE_RE = re.compile(r"\[\s*(?:источник не указан|архив[^]]*|https?://[^\] ]+[^]]*)\s*\]", re.IGNORECASE)
+# Tighten quotes and parentheses spacing
 OPEN_QUOTE_SPACE_RE = re.compile(r"«\s+")
 CLOSE_QUOTE_SPACE_RE = re.compile(r"\s+»")
 OPEN_PAREN_SPACE_RE = re.compile(r"\(\s+")
 CLOSE_PAREN_SPACE_RE = re.compile(r"\s+\)")
 CLOSE_PUNCT_SPACE_RE = re.compile(r"\s+([\)\]\»])")
+
+# --- English gloss removal ---
+# (1) Parenthesized glosses: "(англ. Hogsmeade)" -> remove entirely
+EN_GLOSS_PAREN_RE = re.compile(r"\(\s*англ\.\s*[^)]*\)", re.IGNORECASE)
+# (2) Inline glosses without parentheses: ", англ. Hogsmeade," or " — англ. Elder Wand — "
+# remove the 'англ. <...>' chunk; surrounding punctuation/spacing will be compacted later
+EN_GLOSS_INLINE_RE = re.compile(r"(?:(?<=\s)|^)(англ\.\s*[^,;\.\)\]\n]+)", re.IGNORECASE)
+
 AGGREGATE_TITLES = {
     "Локации_мира_Гарри_Поттера",
     "Волшебные_предметы_мира_Гарри_Поттера",
@@ -63,6 +76,7 @@ def strip_empty_headings(text: str) -> str:
 
 def normalize_text(text: str) -> str:
     """Apply typography fixes, strip references and compact whitespace."""
+    # typographic fixes
     text = text.replace("\u00a0", " ")  # NBSP -> space
     text = text.replace("➤", "")  # nav arrows
     text = EDITBOX_RE.sub("", text)  # [править | править код]
@@ -70,16 +84,21 @@ def normalize_text(text: str) -> str:
 
     # content cleanup
     text = REFNUM_RE.sub("", text)  # drop [1] style refs
-    m = DROP_SECTION_RE.search(text)  # cut tail: "См. также/Ссылки/Источники/..."
+
+    # remove parenthesized English glosses before cutting tails, so leftover "()"
+    # won't be preserved by later spacing rules
+    text = EN_GLOSS_PAREN_RE.sub("", text)
+    # remove inline 'англ. ...' fragments (non-parenthesized)
+    text = EN_GLOSS_INLINE_RE.sub("", text)
+
+    # cut tail: "См. также/Ссылки/Источники/..."
+    m = DROP_SECTION_RE.search(text)
     if m:
         text = text[: m.start()].rstrip()
 
-    # --- Cosmetic cleanup (does not change semantics) ---
-    # a) remove up-arrow note lines
+    # cosmetic cleanup
     text = UP_ARROW_LINE_RE.sub("", text)
-    # b) remove bracketed service inserts
     text = BRACKET_SERVICE_RE.sub("", text)
-    # c) tighten quotes/parentheses spacing
     text = OPEN_QUOTE_SPACE_RE.sub("«", text)
     text = CLOSE_QUOTE_SPACE_RE.sub("»", text)
     text = OPEN_PAREN_SPACE_RE.sub("(", text)
@@ -87,8 +106,8 @@ def normalize_text(text: str) -> str:
     text = CLOSE_PUNCT_SPACE_RE.sub(r"\1", text)
 
     # whitespace compaction
-    text = WS_RE.sub(" ", text)  # collapse horizontal whitespace
-    text = BLANKS_RE.sub("\n\n", text)  # collapse >2 blank lines to 1
+    text = WS_RE.sub(" ", text)
+    text = BLANKS_RE.sub("\n\n", text)
     text = text.strip()
     text = strip_empty_headings(text)
     if text and not text.endswith("\n"):

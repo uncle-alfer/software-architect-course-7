@@ -2,12 +2,20 @@
 import json
 import os
 import textwrap
+import time
 from typing import List, Dict, Any
+
 from scripts.rag.retriever import Retriever
 from scripts.rag.llm_backends import generate
+from scripts.rag.guard import (
+    filter_chunks,
+    block_if_malicious_user_query,
+    SYSTEM_SAFETY,
+)
 
 FEW_SHOTS_PATH = os.getenv("FEW_SHOTS_PATH", "prompts/few_shots.jsonl")
 
+# Базовый системный промпт (будет усилен при guard-level=pre|all)
 SYSTEM_PROMPT = (
     "Ты - ассистент по внутренней базе знаний. Отвечай СТРОГО на русском языке, не смешивай другие языки. "
     "Сначала подумай скрыто, затем напечатай КРАТКИЕ шаги (до 3 пунктов) и итоговый ответ. "
@@ -95,7 +103,7 @@ def should_say_idk(
     """Возвращаем True -> сказать 'Я не знаю'."""
     if not hits:
         return True
-    if hits[0]["score"] < score_thresh:
+    if hits and hits[0]["score"] < score_thresh:
         return True
     total_chars = sum(len(h.get("text", "")) for h in hits)
     if total_chars < min_chars:
@@ -108,25 +116,104 @@ def should_say_idk(
     return overlap_ok < min_overlap_hits
 
 
-def ask_once(query: str, k: int, score_thresh: float, min_chars: int) -> None:
+def _log(path: str, obj: dict) -> None:
+    import os
+
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(obj, ensure_ascii=False) + "\n")
+
+
+def with_system_preprompt(system_base: str, guard_level: str) -> str:
+    return SYSTEM_SAFETY if guard_level in ("pre", "all") else system_base
+
+
+def ask_once(query: str, k: int, score_thresh: float, min_chars: int, guard_level: str, log_path: str) -> None:
+    # 0) Блокируем вредные пользовательские запросы
+    block = block_if_malicious_user_query(query)
+    if block:
+        _log(log_path, {"ts": time.time(), "q": query, "guard": guard_level, "event": "BLOCKED_USER_QUERY"})
+        print(block + "\n—")
+        print("\n--- Источники ---")
+        print("—")
+        return
+
     retr = Retriever(k=k)
     shots = load_few_shots(FEW_SHOTS_PATH)
     hits = retr.search(query, k=k)
 
+    dropped = []
+    # 1) Пост-фильтр чанков (инъекции/секреты/poison)
+    if guard_level in ("post", "all"):
+        safe, dropped = filter_chunks(hits, do_strip=True)
+        hits = [  # приводим обратно к плоскому dict для совместимости с остальным кодом
+            {
+                "id": h.get("id"),
+                "score": h.get("score"),
+                "title": h.get("title"),
+                "path": h.get("path"),
+                "text": h.get("text"),
+                "chunk_index": h.get("chunk_index"),
+                "word_start": h.get("word_start"),
+                "word_end": h.get("word_end"),
+            }
+            for h in (
+                dict(
+                    text=ch.text,
+                    title=ch.title,
+                    path=ch.path,
+                    score=ch.score,
+                    chunk_index=(ch.meta or {}).get("chunk_index"),
+                    word_start=(ch.meta or {}).get("word_start"),
+                    word_end=(ch.meta or {}).get("word_end"),
+                )
+                for ch in safe
+            )
+        ]
+
+    # 2) Честный IDK при пустом/слабом/отфильтрованном контексте
     if should_say_idk(query, hits, score_thresh, min_chars):
+        _log(
+            log_path,
+            {
+                "ts": time.time(),
+                "q": query,
+                "guard": guard_level,
+                "event": "IDK",
+                "dropped": [{"path": getattr(ch, "path", None), "reasons": r} for ch, r in (dropped or [])],
+            },
+        )
         print(
             "Краткие шаги:\n- Проверил контекст - релевантных фактов недостаточно.\nОтвет:\nЯ не знаю.\nИсточники:\n-"
         )
         return
 
+    # 3) Pre-prompt (system safety)
+    system_msg = with_system_preprompt(SYSTEM_PROMPT, guard_level)
     prompt = build_prompt(query, hits, shots)
-    answer = generate(SYSTEM_PROMPT, prompt)
-    print(answer.strip())
+    answer = generate(system_msg, prompt).strip()
+    event = "OK"
+    if "я не знаю" in answer.lower():
+        event = "IDK"
+
+    _log(
+        log_path,
+        {
+            "ts": time.time(),
+            "q": query,
+            "guard": guard_level,
+            "event": event,
+            "top_paths": [h.get("path") for h in hits][:3],
+            "dropped": [{"path": getattr(ch, "path", None), "reasons": r} for ch, r in (dropped or [])],
+        },
+    )
+
+    print(answer)
     print("\n--- Источники ---")
     print(list_sources(hits))
 
 
-def repl(k: int, score_thresh: float, min_chars: int) -> None:
+def repl(k: int, score_thresh: float, min_chars: int, guard_level: str, log_path: str) -> None:
     print("RAG-бот запущен. Введите вопрос, 'exit' для выхода.")
     retr = Retriever(k=k)
     shots = load_few_shots(FEW_SHOTS_PATH)
@@ -138,14 +225,75 @@ def repl(k: int, score_thresh: float, min_chars: int) -> None:
             break
         if not q or q.lower() in {"exit", "quit"}:
             break
+
+        # 0) Блок вредных юзерских запросов
+        block = block_if_malicious_user_query(q)
+        if block:
+            _log(log_path, {"ts": time.time(), "q": q, "guard": guard_level, "event": "BLOCKED_USER_QUERY"})
+            print(block + "\n—")
+            print("\n--- Источники ---")
+            print("—")
+            continue
+
         hits = retr.search(q, k=k)
+        dropped = []
+        if guard_level in ("post", "all"):
+            safe, dropped = filter_chunks(hits, do_strip=True)
+            hits = [
+                {
+                    "id": h.get("id"),
+                    "score": h.get("score"),
+                    "title": h.get("title"),
+                    "path": h.get("path"),
+                    "text": h.get("text"),
+                    "chunk_index": h.get("chunk_index"),
+                    "word_start": h.get("word_start"),
+                    "word_end": h.get("word_end"),
+                }
+                for h in (
+                    dict(
+                        text=ch.text,
+                        title=ch.title,
+                        path=ch.path,
+                        score=ch.score,
+                        chunk_index=(ch.meta or {}).get("chunk_index"),
+                        word_start=(ch.meta or {}).get("word_start"),
+                        word_end=(ch.meta or {}).get("word_end"),
+                    )
+                    for ch in safe
+                )
+            ]
+
         if should_say_idk(q, hits, score_thresh, min_chars):
+            _log(
+                log_path,
+                {
+                    "ts": time.time(),
+                    "q": q,
+                    "guard": guard_level,
+                    "event": "IDK",
+                    "dropped": [{"path": getattr(ch, "path", None), "reasons": r} for ch, r in (dropped or [])],
+                },
+            )
             print(
                 "Краткие шаги:\n- Проверил контекст - релевантных фактов недостаточно.\nОтвет:\nЯ не знаю.\nИсточники:\n-"
             )
             continue
+
+        system_msg = with_system_preprompt(SYSTEM_PROMPT, guard_level)
         prompt = build_prompt(q, hits, shots)
-        answer = generate(SYSTEM_PROMPT, prompt)
+        answer = generate(system_msg, prompt)
+        _log(
+            log_path,
+            {
+                "ts": time.time(),
+                "q": q,
+                "guard": guard_level,
+                "event": "OK",
+                "top_paths": [h.get("path") for h in hits][:3],
+                "dropped": [{"path": getattr(ch, "path", None), "reasons": r} for ch, r in (dropped or [])],
+            },
+        )
         print(answer.strip())
         print("\n--- Источники ---")
         print(list_sources(hits))
@@ -158,11 +306,13 @@ if __name__ == "__main__":
     ap.add_argument("--k", type=int, default=4)
     ap.add_argument("--score-thresh", type=float, default=0.28, help="минимальная похожесть top-1")
     ap.add_argument("--min-chars", type=int, default=400, help="минимум суммарных символов в контексте")
+    ap.add_argument("--guard-level", choices=["none", "pre", "post", "all"], default="all")
+    ap.add_argument("--log", default="artifacts/task5/guard.log", help="путь к лог-файлу")
     args = ap.parse_args()
 
     if args.mode == "ask":
         if not args.q:
             raise SystemExit("Нужно задать --q 'вопрос'")
-        ask_once(args.q, args.k, args.score_thresh, args.min_chars)
+        ask_once(args.q, args.k, args.score_thresh, args.min_chars, args.guard_level, args.log)
     else:
-        repl(args.k, args.score_thresh, args.min_chars)
+        repl(args.k, args.score_thresh, args.min_chars, args.guard_level, args.log)

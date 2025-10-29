@@ -1,0 +1,18 @@
+{
+  "model": "intfloat/multilingual-e5-base",
+  "dimension": 768,
+  "files": 31,
+  "chunks": 208,
+  "index_path": "artifacts/kb_faiss.index",
+  "meta_path": "artifacts/kb_meta.jsonl",
+  "elapsed_sec": 76.52,
+  "chunking": {
+    "max_words": 200,
+    "overlap_words": 40
+  },
+  "cpu": {
+    "vcpus": 8,
+    "batch": 96
+  },
+  "vectorization": "E5 format: 'passage: {title}\\n\\n{chunk}'"
+}
